@@ -6,8 +6,9 @@ import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
 
 import 'generated/l10n.dart';
 
-void main() {
-  SharedPreferencesSingleton.init();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Prefs.init();
   runApp(const FruitHub());
 }
 
