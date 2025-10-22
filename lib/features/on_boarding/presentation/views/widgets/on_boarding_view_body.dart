@@ -44,7 +44,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           dotsCount: 2,
           decorator: DotsDecorator(
             color: currentPage == 0
-                ? AppColors.primaryColor.withOpacity(0.5)
+                ? AppColors.primaryColor.withValues(alpha: 0.5)
                 : AppColors.primaryColor,
             activeColor: AppColors.primaryColor,
           ),
