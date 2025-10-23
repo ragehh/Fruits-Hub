@@ -17,4 +17,18 @@ class Assets {
       'assets/images/page_view_item2_image.svg';
   static const String imagesPlant = 'assets/images/plant.svg';
   static const String imagesSplashBottom = 'assets/images/splash_bottom.svg';
+  static const String imagesCheck = 'assets/images/check.svg';
+  static const String imagesEdit = 'assets/images/edit.svg';
+  static const String imagesFeaturedItemBackground =
+      'assets/images/featured_item_background.svg';
+  static const String imagesFilter = 'assets/images/filter.svg';
+  static const String imagesFilter2 = 'assets/images/filter2.svg';
+  static const String imagesLocation = 'assets/images/location.svg';
+  static const String imagesNotification = 'assets/images/notification.svg';
+  static const String imagesProfileImage = 'assets/images/profile_image.png';
+  static const String imagesSearchIcon = 'assets/images/search_icon.svg';
+  static const String imagesTrash = 'assets/images/trash.svg';
+  static const String imagesVector = 'assets/images/Vector.svg';
+  static const String imagesWatermelonTest =
+      'assets/images/watermelon_test.png';
 }
