@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
-import 'package:fruits_hub/features/auth/presentation/views/login_view.dart';
+import 'package:fruits_hub/features/auth/presentation/views/sign_in_view.dart';
 import 'package:svg_flutter/svg.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
@@ -45,7 +45,7 @@ class PageViewItem extends StatelessWidget {
                     Prefs.setBool(kIsOnBoardingViewSeen, true);
                     Navigator.of(
                       context,
-                    ).pushReplacementNamed(LoginView.routeName);
+                    ).pushReplacementNamed(SignInView.routeName);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(16),
