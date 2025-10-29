@@ -1,6 +1,6 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
-import 'package:meta/meta.dart';
 
 import '../../../domain/entities/user_entity.dart';
 
