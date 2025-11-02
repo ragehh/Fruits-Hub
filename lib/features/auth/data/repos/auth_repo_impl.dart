@@ -88,4 +88,10 @@ class AuthRepoImpl extends AuthRepo {
     }
     return Left(ServerFailure('حدث خطأ. يُرجى المحاولة لاحقًا.'));
   }
+
+  @override
+  Future addUserData({required UserEntity user}) {
+    // TODO: implement addUserData
+    throw UnimplementedError();
+  }
 }
