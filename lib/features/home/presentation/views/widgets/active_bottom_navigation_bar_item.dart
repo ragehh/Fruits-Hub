@@ -16,40 +16,37 @@ class ActiveBottomNavigationBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 3,
-      child: Center(
-        child: Container(
-          padding: EdgeInsets.only(left: 16),
-          decoration: ShapeDecoration(
-            color: Color(0xFFEEEEEE),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+    return Center(
+      child: Container(
+        padding: EdgeInsets.only(left: 16),
+        decoration: ShapeDecoration(
+          color: Color(0xFFEEEEEE),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 30,
+              height: 30,
+              decoration: ShapeDecoration(
+                color: AppColors.primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: Center(child: SvgPicture.asset(image)),
             ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 30,
-                height: 30,
-                decoration: ShapeDecoration(
-                  color: AppColors.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Center(child: SvgPicture.asset(image)),
+            SizedBox(width: 4),
+            Text(
+              text,
+              style: TextStyles.semiBold11.copyWith(
+                color: AppColors.primaryColor,
               ),
-              SizedBox(width: 4),
-              Text(
-                text,
-                style: TextStyles.semiBold11.copyWith(
-                  color: AppColors.primaryColor,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
