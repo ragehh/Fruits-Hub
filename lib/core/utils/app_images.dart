@@ -31,4 +31,15 @@ class Assets {
   static const String imagesVector = 'assets/images/Vector.svg';
   static const String imagesWatermelonTest =
       'assets/images/watermelon_test.png';
+  static const String imagesHomeBold = 'assets/images/home_bold.svg';
+  static const String imagesHomeOutline = 'assets/images/home_outline.svg';
+  static const String imagesProductsBold = 'assets/images/products_bold.svg';
+  static const String imagesProductsOutline =
+      'assets/images/products_outline.svg';
+  static const String imagesShoppingCartBold =
+      'assets/images/shopping_cart_bold.svg';
+  static const String imagesShoppingCartOutline =
+      'assets/images/shopping_cart_outline.svg';
+  static const String imagesUserBold = 'assets/images/user_bold.svg';
+  static const String imagesUserOutline = 'assets/images/user_outline.svg';
 }
