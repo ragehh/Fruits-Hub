@@ -10,8 +10,6 @@ class FruitItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 163,
-      height: 280,
       decoration: ShapeDecoration(
         color: Color(0xFFF3F5F7),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
