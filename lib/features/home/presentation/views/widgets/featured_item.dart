@@ -11,7 +11,10 @@ class FeaturedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var itemWidth = MediaQuery.of(context).size.width;
+    var itemWidth = MediaQuery.of(context).size.width - 32;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(4),
+      child: SizedBox(
         width: itemWidth,
         child: AspectRatio(
           aspectRatio: 342 / 158,
@@ -41,9 +44,7 @@ class FeaturedItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 25),
-                      Text(
-                        'عروض العيد',
-                      ),
+                      Text('عروض العيد'),
                       Spacer(),
                       Text(
                         'خصم 25%',
@@ -59,6 +60,7 @@ class FeaturedItem extends StatelessWidget {
             ],
           ),
         ),
+      ),
     );
   }
 }
