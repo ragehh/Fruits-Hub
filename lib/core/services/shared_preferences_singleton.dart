@@ -18,4 +18,8 @@ class Prefs {
   static Future<void> setString(String key, String value) async {
     await _instance.setString(key, value);
   }
+
+  static String getString(String key) {
+    return _instance.getString(key) ?? "";
+  }
 }
