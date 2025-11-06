@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../utils/app_text_styles.dart';
 
-AppBar buildAppBar(BuildContext context, {required String title}) {
+AppBar buildAppBar(
+  BuildContext context, {
+  required String title,
+  List<Widget>? actions,
+}) {
   return AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+    actions: actions,
     leading: GestureDetector(
       onTap: () {
         Navigator.pop(context);
