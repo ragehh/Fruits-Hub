@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:fruits_hub/core/models/review_model.dart';
 
-import '../entities/product_entity.dart';
-
 class ProductModel {
   final String productName;
   final String productCode;
@@ -11,6 +9,8 @@ class ProductModel {
   final num productPrice;
   final num avgRating = 0;
   final num avgCount = 0;
+  final num sellingCount;
+
   final int expirationMonths;
   final int numberOfCalories;
   final int unitAmount;
@@ -28,6 +28,7 @@ class ProductModel {
     required this.expirationMonths,
     required this.numberOfCalories,
     required this.unitAmount,
+    this.sellingCount = 0,
     required this.image,
     this.imageUrl,
     required this.isFeatured,
@@ -35,20 +36,23 @@ class ProductModel {
     required this.reviews,
   });
 
-  factory ProductModel.fromEntity(ProductEntity entity) {
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      productName: entity.productName,
-      productCode: entity.productCode,
-      productDescription: entity.productDescription,
-      productPrice: entity.productPrice,
-      expirationMonths: entity.expirationMonths,
-      numberOfCalories: entity.numberOfCalories,
-      unitAmount: entity.unitAmount,
-      image: entity.image,
-      imageUrl: entity.imageUrl,
-      isFeatured: entity.isFeatured,
-      isOrganic: entity.isOrganic,
-      reviews: entity.reviews.map((e) => ReviewModel.fromEntity(e)).toList(),
+      productName: json['productName'],
+      productCode: json['productCode'],
+      productDescription: json['productDescription'],
+      productPrice: json['productPrice'],
+      expirationMonths: json['expirationMonths'],
+      numberOfCalories: json['numberOfCalories'],
+      unitAmount: json['unitAmount'],
+      sellingCount: json['sellingCount'],
+      image: json['image'],
+      imageUrl: json['imageUrl'],
+      isFeatured: json['isFeatured'],
+      isOrganic: json['isOrganic'],
+      reviews: json['reviews'] != null
+          ? json['reviews'].map((e) => ReviewModel.fromJson(e)).toList()
+          : [],
     );
   }
 
@@ -61,6 +65,7 @@ class ProductModel {
       "expirationMonths": expirationMonths,
       "numberOfCalories": numberOfCalories,
       "unitAmount": unitAmount,
+      "sellingCount": sellingCount,
       "imageUrl": imageUrl,
       "isFeatured": isFeatured,
       "isOrganic": isOrganic,
