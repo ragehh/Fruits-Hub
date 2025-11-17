@@ -56,7 +56,7 @@ class ProductModel {
     );
   }
 
-  toJSon() {
+  Map<String, Object?> toJSon() {
     return {
       "productName": productName,
       "productCode": productCode,
