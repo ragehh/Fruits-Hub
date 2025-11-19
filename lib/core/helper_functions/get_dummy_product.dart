@@ -23,5 +23,6 @@ List<ProductEntity> getDummyProducts() {
     getDummyProduct(),
     getDummyProduct(),
     getDummyProduct(),
+    getDummyProduct(),
   ];
 }
