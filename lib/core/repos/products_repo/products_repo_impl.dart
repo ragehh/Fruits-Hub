@@ -45,6 +45,7 @@ class ProductsRepoImpl implements ProductsRepo {
           .toList();
       return Right(products);
     } catch (e) {
+      print("ERROR => $e");
       return Left(ServerFailure('Failed to get products.'));
     }
   }
