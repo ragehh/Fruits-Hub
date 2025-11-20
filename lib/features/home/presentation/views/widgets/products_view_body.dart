@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/cubits/products_cubit/products_cubit.dart';
-import 'package:fruits_hub/features/home/presentation/views/widgets/best_selling_header.dart';
-import 'package:fruits_hub/features/home/presentation/views/widgets/custom_home_app_bar.dart';
-import 'package:fruits_hub/features/home/presentation/views/widgets/featured_list.dart';
+import 'package:fruits_hub/features/home/presentation/views/widgets/products_header.dart';
 import 'package:fruits_hub/features/home/presentation/views/widgets/search_text_field.dart';
 
+import '../../../../../constants.dart';
+import 'custom_home_app_bar.dart';
 import 'products_grid_view_bloc_builder.dart';
 
-class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key});
+class ProductsViewBody extends StatefulWidget {
+  const ProductsViewBody({super.key});
 
   @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
+  State<ProductsViewBody> createState() => _ProductsViewBodyState();
 }
 
-class _HomeViewBodyState extends State<HomeViewBody> {
+class _ProductsViewBodyState extends State<ProductsViewBody> {
   @override
   void initState() {
-    context.read<ProductsCubit>().getBestSellingProducts();
+    context.read<ProductsCubit>().getProducts();
     super.initState();
   }
 
@@ -27,7 +26,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-      child: const CustomScrollView(
+      child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
             child: Column(
@@ -37,9 +36,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 SizedBox(height: 16),
                 SearchTextField(),
                 SizedBox(height: 12),
-                FeaturedList(),
-                SizedBox(height: 12),
-                BestSellingHeader(),
+                ProductsHeader(
+                  productsCount: context.read<ProductsCubit>().productsCount,
+                ),
                 SizedBox(height: 8),
               ],
             ),
