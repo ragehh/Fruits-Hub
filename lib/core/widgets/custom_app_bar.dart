@@ -6,7 +6,7 @@ AppBar buildAppBar(
   BuildContext context, {
   required String title,
   List<Widget>? actions,
-  showBackButton = true,
+  bool showBackButton = true,
 }) {
   return AppBar(
     backgroundColor: Colors.transparent,
