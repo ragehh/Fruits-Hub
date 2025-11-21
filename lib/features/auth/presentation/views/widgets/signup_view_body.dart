@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/constants.dart';
-import 'package:fruits_hub/core/helper_functions/build_error_snack_bar.dart';
+import 'package:fruits_hub/core/helper_functions/build_snack_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/auth/presentation/cubits/signup_cubit/signup_cubit.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/have_an_account_widget.dart';
@@ -75,7 +75,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                             password,
                           );
                     } else {
-                      buildErrorSnackBar(
+                      buildSnackBar(
                         context,
                         'يجب عليك الموافقة علي الشروط والأحكام.',
                       );
