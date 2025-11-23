@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
+import 'package:fruits_hub/features/home/domain/entities/cart_item_entity.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
 
 class CartItemActionButtons extends StatelessWidget {
-  const CartItemActionButtons({super.key});
+  const CartItemActionButtons({super.key, required this.cartItemEntity});
+
+  final CartItemEntity cartItemEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,9 @@ class CartItemActionButtons extends StatelessWidget {
       children: [
         CartItemActionButton(
           icon: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              cartItemEntity.increaseCount();
+            },
             icon: Center(child: Icon(Icons.add, color: Colors.white, size: 50)),
           ),
           color: AppColors.primaryColor,
@@ -20,14 +25,16 @@ class CartItemActionButtons extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
-            '3',
+            cartItemEntity.count.toString(),
             textAlign: TextAlign.center,
             style: TextStyles.bold13,
           ),
         ),
         CartItemActionButton(
           icon: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              cartItemEntity.decreaseCount();
+            },
             icon: Center(
               child: Icon(Icons.remove, color: Colors.grey, size: 50),
             ),
