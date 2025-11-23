@@ -1,14 +1,19 @@
+import 'package:equatable/equatable.dart';
 import 'package:fruits_hub/features/home/domain/entities/cart_item_entity.dart';
 
 import '../../../../core/entities/product_entity.dart';
 
-class CartEntity {
+class CartEntity extends Equatable {
   CartEntity(this.cartItems);
 
   final List<CartItemEntity> cartItems;
 
   void addCartItem(CartItemEntity cartItem) {
     cartItems.add(cartItem);
+  }
+
+  void removeCartItem(CartItemEntity cartItem) {
+    cartItems.remove(cartItem);
   }
 
   bool isExist(ProductEntity productEntity) {
@@ -36,4 +41,7 @@ class CartEntity {
     }
     return totalPrice;
   }
+
+  @override
+  List<Object?> get props => throw UnimplementedError();
 }
