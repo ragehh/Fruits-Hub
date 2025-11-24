@@ -35,6 +35,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         children: [
           SizedBox(height: kTopPadding),
           CheckoutSteps(),
+          SizedBox(height: 32),
           Expanded(
             child: CheckoutStepsPageView(pageController: pageController),
           ),
