@@ -1,22 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/shipping_item.dart';
 
-class ShippingSection extends StatelessWidget {
+class ShippingSection extends StatefulWidget {
   const ShippingSection({super.key});
 
   @override
+  State<ShippingSection> createState() => _ShippingSectionState();
+}
+
+class _ShippingSectionState extends State<ShippingSection> {
+  int selectedIndex = -1;
+
+  @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         ShippingItem(
-          isSelected: true,
+          onTap: () {
+            setState(() {
+              selectedIndex = 0;
+            });
+          },
+          isSelected: selectedIndex == 0,
           title: 'الدفع عند الاستلام',
           subTitle: 'التسليم من المكان',
           price: '40 جنيه',
         ),
         SizedBox(height: 8),
         ShippingItem(
-          isSelected: false,
+          onTap: () {
+            setState(() {
+              selectedIndex = 1;
+            });
+          },
+          isSelected: selectedIndex == 1,
           title: 'الدفع أونلاين',
           subTitle: 'يرجي تحديد طريقه الدفع',
           price: 'مجاني',
