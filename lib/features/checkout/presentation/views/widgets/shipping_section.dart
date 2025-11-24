@@ -9,12 +9,14 @@ class ShippingSection extends StatelessWidget {
     return const Column(
       children: [
         ShippingItem(
+          isSelected: true,
           title: 'الدفع عند الاستلام',
           subTitle: 'التسليم من المكان',
           price: '40 جنيه',
         ),
         SizedBox(height: 8),
         ShippingItem(
+          isSelected: false,
           title: 'الدفع أونلاين',
           subTitle: 'يرجي تحديد طريقه الدفع',
           price: 'مجاني',
