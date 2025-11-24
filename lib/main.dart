@@ -24,7 +24,6 @@ void main() async {
 class FruitHub extends StatelessWidget {
   const FruitHub({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
