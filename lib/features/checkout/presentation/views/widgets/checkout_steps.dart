@@ -4,17 +4,33 @@ import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout
 import '../../../../../core/helper_functions/get_steps.dart';
 
 class CheckoutSteps extends StatelessWidget {
-  const CheckoutSteps({super.key});
+  const CheckoutSteps({
+    super.key,
+    required this.currentPageIndex,
+    required this.pageController,
+  });
+
+  final int currentPageIndex;
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: List.generate(getSteps().length, (index) {
         return Expanded(
-          child: CheckoutStepItem(
-            isActive: true,
-            text: getSteps()[index],
-            index: (index + 1).toString(),
+          child: GestureDetector(
+            onTap: () {
+              pageController.animateToPage(
+                index,
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeIn,
+              );
+            },
+            child: CheckoutStepItem(
+              isActive: index <= currentPageIndex,
+              text: getSteps()[index],
+              index: (index + 1).toString(),
+            ),
           ),
         );
       }),
