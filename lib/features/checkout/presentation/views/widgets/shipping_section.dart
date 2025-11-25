@@ -12,6 +12,7 @@ class ShippingSection extends StatefulWidget {
 
 class _ShippingSectionState extends State<ShippingSection> {
   int selectedIndex = -1;
+  late var orderEntity = context.read<OrderEntity>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +22,21 @@ class _ShippingSectionState extends State<ShippingSection> {
           onTap: () {
             setState(() {
               selectedIndex = 0;
+              orderEntity.payWithCash = true;
             });
           },
           isSelected: selectedIndex == 0,
           title: 'الدفع عند الاستلام',
           subTitle: 'التسليم من المكان',
           price:
-              '${(context.read<OrderEntity>().cartEntity.calculateTotalPrice() + 40).toString()} جنيه',
+              '${(orderEntity.cartEntity.calculateTotalPrice() + 40).toString()} جنيه',
         ),
         SizedBox(height: 8),
         ShippingItem(
           onTap: () {
             setState(() {
               selectedIndex = 1;
+              orderEntity.payWithCash = false;
             });
           },
           isSelected: selectedIndex == 1,
