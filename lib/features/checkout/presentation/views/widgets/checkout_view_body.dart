@@ -41,7 +41,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           ),
           CustomButton(
             onPressed: () {
-              pageController.nextPage(
+              pageController.animateToPage(
+                2,
                 duration: Duration(milliseconds: 300),
                 curve: Curves.easeIn,
               );
