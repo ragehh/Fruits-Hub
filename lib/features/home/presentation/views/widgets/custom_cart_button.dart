@@ -20,7 +20,7 @@ class CustomCartButton extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 CheckoutView.routeName,
-                arguments: context.read<CartCubit>().cartEntity.cartItems,
+                arguments: context.read<CartCubit>().cartEntity,
               );
             } else {
               buildSnackBar(context, 'لا توجد منتجات بالسلة.');
