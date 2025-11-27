@@ -17,6 +17,11 @@ class CheckoutViewBody extends StatefulWidget {
 
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   late PageController pageController;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  ValueNotifier<AutovalidateMode> valueNotifier = ValueNotifier(
+    AutovalidateMode.disabled,
+  );
 
   @override
   void initState() {
@@ -32,6 +37,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   void dispose() {
     pageController.dispose();
+    valueNotifier.dispose();
     super.dispose();
   }
 
@@ -51,18 +57,18 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           ),
           SizedBox(height: 32),
           Expanded(
-            child: CheckoutStepsPageView(pageController: pageController),
+            child: CheckoutStepsPageView(
+              pageController: pageController,
+              formKey: formKey,
+              valueListenable: valueNotifier,
+            ),
           ),
           CustomButton(
             onPressed: () {
-              if (orderEntity.payWithCash != null) {
-                pageController.animateToPage(
-                  currentPageIndex + 1,
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
-                );
-              } else {
-                buildSnackBar(context, 'يرجي تحديد طريقة الدفع.');
+              if (currentPageIndex == 0) {
+                _handleShippingSectionValidation(context);
+              } else if (currentPageIndex == 1) {
+                _handleAddressInputSectionValidation(context);
               }
             },
             text: getNextButtonText(currentPageIndex),
@@ -71,6 +77,31 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
       ),
     );
+  }
+
+  void _handleShippingSectionValidation(BuildContext context) {
+    if (orderEntity.payWithCash != null) {
+      pageController.animateToPage(
+        currentPageIndex + 1,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+    } else {
+      buildSnackBar(context, 'يرجي تحديد طريقة الدفع.');
+    }
+  }
+
+  void _handleAddressInputSectionValidation(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      pageController.animateToPage(
+        currentPageIndex + 1,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+    } else {
+      valueNotifier.value = AutovalidateMode.always;
+    }
   }
 
   String getNextButtonText(int currentPageIndex) {
