@@ -14,4 +14,9 @@ class ShippingAddressEntity {
     this.city,
     this.addressDetails,
   });
+
+  @override
+  String toString() {
+    return '$city $address $addressDetails';
+  }
 }

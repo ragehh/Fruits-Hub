@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/utils/app_images.dart';
+import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/payment_item.dart';
 import 'package:svg_flutter/svg.dart';
 
@@ -19,7 +21,7 @@ class ShippingAddressWidget extends StatelessWidget {
           SvgPicture.asset(Assets.imagesLocation),
           SizedBox(width: 8),
           Text(
-            'شارع النيل، مبنى رقم ١٢٣',
+            context.read<OrderEntity>().shippingAddressEntity.toString(),
             style: TextStyles.regular16.copyWith(color: Color(0xFF4E5556)),
           ),
           Spacer(),

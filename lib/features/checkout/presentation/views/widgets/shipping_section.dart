@@ -34,7 +34,7 @@ class _ShippingSectionState extends State<ShippingSection>
           title: 'الدفع عند الاستلام',
           subTitle: 'التسليم من المكان',
           price:
-              '${(orderEntity.cartEntity.calculateTotalPrice() + 40).toString()} جنيه',
+              '${(orderEntity.cartEntity.calculateTotalPrice() + 30).toString()} جنيه',
         ),
         SizedBox(height: 8),
         ShippingItem(

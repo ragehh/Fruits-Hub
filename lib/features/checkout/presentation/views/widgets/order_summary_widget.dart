@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/payment_item.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
@@ -19,7 +21,10 @@ class OrderSummaryWidget extends StatelessWidget {
                 style: TextStyles.regular13.copyWith(color: Color(0xFF4E5556)),
               ),
               Spacer(),
-              Text('150 جنيه', style: TextStyles.semiBold16),
+              Text(
+                '${context.read<OrderEntity>().cartEntity.calculateTotalPrice()} جنيه',
+                style: TextStyles.semiBold16,
+              ),
             ],
           ),
           const SizedBox(height: 8),
@@ -43,7 +48,10 @@ class OrderSummaryWidget extends StatelessWidget {
             children: [
               Text('الكلي', style: TextStyles.bold16),
               Spacer(),
-              Text('180 جنية', style: TextStyles.bold16),
+              Text(
+                '${context.read<OrderEntity>().cartEntity.calculateTotalPrice() + 30} جنية',
+                style: TextStyles.bold16,
+              ),
             ],
           ),
         ],
