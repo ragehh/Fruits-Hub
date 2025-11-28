@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/helper_functions/get_user.dart';
+import 'package:fruits_hub/core/services/get_it_service.dart';
 import 'package:fruits_hub/core/widgets/custom_app_bar.dart';
 import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruits_hub/features/checkout/domain/entities/shipping_address_entity.dart';
+import 'package:fruits_hub/features/checkout/presentation/manager/add_order_cubit/add_order_cubit.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/repos/orders_repo/orders_repo.dart';
 import '../../../home/domain/entities/cart_entity.dart';
 
 class CheckoutView extends StatelessWidget {
@@ -16,15 +20,18 @@ class CheckoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context, title: 'الشحن'),
-      body: Provider.value(
-        value: OrderEntity(
-          uId: getUser().uId,
-          cartEntity,
-          shippingAddressEntity: ShippingAddressEntity(),
+    return BlocProvider(
+      create: (context) => AddOrderCubit(getIt<OrdersRepo>()),
+      child: Scaffold(
+        appBar: buildAppBar(context, title: 'الشحن'),
+        body: Provider.value(
+          value: OrderEntity(
+            uId: getUser().uId,
+            cartEntity,
+            shippingAddressEntity: ShippingAddressEntity(),
+          ),
+          child: CheckoutViewBody(),
         ),
-        child: CheckoutViewBody(),
       ),
     );
   }
