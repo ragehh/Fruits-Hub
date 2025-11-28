@@ -6,6 +6,7 @@ import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_steps.dart';
 
 import '../../../domain/entities/order_entity.dart';
+import '../../manager/add_order_cubit/add_order_cubit.dart';
 import 'checkout_steps_page_view.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -69,6 +70,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                 _handleShippingSectionValidation(context);
               } else if (currentPageIndex == 1) {
                 _handleAddressInputSectionValidation(context);
+              } else {
+                context.read<AddOrderCubit>().addOrder(order: orderEntity);
               }
             },
             text: getNextButtonText(currentPageIndex),
