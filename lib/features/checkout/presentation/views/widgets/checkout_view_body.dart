@@ -11,6 +11,7 @@ import 'package:fruits_hub/features/checkout/domain/entities/paypal_payment_enti
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_steps.dart';
 
 import '../../../domain/entities/order_entity.dart';
+import '../../manager/add_order_cubit/add_order_cubit.dart';
 import 'checkout_steps_page_view.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -150,6 +151,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     PaypalPaymentEntity paypalPaymentEntity = PaypalPaymentEntity.fromEntity(
       orderEntity,
     );
+    var addOrderCubit = context.read<AddOrderCubit>();
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) => PaypalCheckoutView(
@@ -160,6 +162,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           note: "Contact us for any questions on your order.",
           onSuccess: (Map params) async {
             Navigator.pop(context);
+            addOrderCubit.addOrder(order: orderEntity);
             buildSnackBar(context, 'تمت عملية الدفع بنجاح.');
           },
           onError: (error) {
