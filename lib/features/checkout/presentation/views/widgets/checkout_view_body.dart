@@ -1,12 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/helper_functions/build_snack_bar.dart';
+import 'package:fruits_hub/core/utils/app_keys.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
+import 'package:fruits_hub/features/checkout/domain/entities/paypal_payment_entity/paypal_payment_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_steps.dart';
 
 import '../../../domain/entities/order_entity.dart';
-import '../../manager/add_order_cubit/add_order_cubit.dart';
 import 'checkout_steps_page_view.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -71,7 +75,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               } else if (currentPageIndex == 1) {
                 _handleAddressInputSectionValidation(context);
               } else {
-                context.read<AddOrderCubit>().addOrder(order: orderEntity);
+                // context.read<AddOrderCubit>().addOrder(order: orderEntity);
+                _processPayment(context);
               }
             },
             text: getNextButtonText(currentPageIndex),
@@ -118,5 +123,34 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       default:
         return 'التالي';
     }
+  }
+
+  void _processPayment(BuildContext context) {
+    PaypalPaymentEntity paypalPaymentEntity = PaypalPaymentEntity.fromEntity(
+      orderEntity,
+    );
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => PaypalCheckoutView(
+          sandboxMode: true,
+          clientId: kPayPalClientId,
+          secretKey: kPayPalSecretKey,
+          transactions: [paypalPaymentEntity.toJson()],
+          note: "Contact us for any questions on your order.",
+          onSuccess: (Map params) async {
+            Navigator.pop(context);
+            buildSnackBar(context, 'تمت عملية الدفع بنجاح.');
+          },
+          onError: (error) {
+            log(error.toString());
+            Navigator.pop(context);
+            buildSnackBar(context, 'حدث خطأ في عملية الدفع.');
+          },
+          onCancel: () {
+            print('cancelled:');
+          },
+        ),
+      ),
+    );
   }
 }
