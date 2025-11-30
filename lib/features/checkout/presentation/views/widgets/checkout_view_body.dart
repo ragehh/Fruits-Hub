@@ -57,6 +57,28 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         children: [
           SizedBox(height: kTopPadding),
           CheckoutSteps(
+            onTap: (index) {
+              if (index == 0) {
+                pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeIn,
+                );
+              } else if (index == 1) {
+                var orderEntity = context.read<OrderEntity>();
+                if (orderEntity.payWithCash != null) {
+                  pageController.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeIn,
+                  );
+                } else {
+                  buildSnackBar(context, 'يرجي تحديد طريقه الدفع');
+                }
+              } else {
+                _handleAddressInputSectionValidation(context);
+              }
+            },
             currentPageIndex: currentPageIndex,
             pageController: pageController,
           ),
@@ -75,7 +97,6 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               } else if (currentPageIndex == 1) {
                 _handleAddressInputSectionValidation(context);
               } else {
-                // context.read<AddOrderCubit>().addOrder(order: orderEntity);
                 _processPayment(context);
               }
             },
