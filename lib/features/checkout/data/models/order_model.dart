@@ -1,10 +1,12 @@
 import 'package:fruits_hub/features/checkout/data/models/order_product_model.dart';
 import 'package:fruits_hub/features/checkout/data/models/shipping_address_model.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../domain/entities/order_entity.dart';
 
 class OrderModel {
   final String uId;
+  final String orderId;
   final List<OrderProductModel> orderProducts;
   final double totalPrice;
   final ShippingAddressModel shippingAddressModel;
@@ -12,6 +14,7 @@ class OrderModel {
 
   OrderModel({
     required this.uId,
+    required this.orderId,
     required this.orderProducts,
     required this.totalPrice,
     required this.shippingAddressModel,
@@ -21,6 +24,7 @@ class OrderModel {
   factory OrderModel.fromEntity(OrderEntity orderEntity) {
     return OrderModel(
       uId: orderEntity.uId,
+      orderId: Uuid().v4(),
       orderProducts: orderEntity.cartEntity.cartItems.map((e) {
         return OrderProductModel.fromEntity(e);
       }).toList(),
@@ -35,6 +39,7 @@ class OrderModel {
   Map<String, Object> toJson() {
     return {
       'uId': uId,
+      'orderId': orderId,
       'status': 'pending',
       'date': DateTime.now().toString(),
       'orderProducts': orderProducts.map((e) => e.toJson()).toList(),

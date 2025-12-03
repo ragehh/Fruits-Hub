@@ -21,7 +21,10 @@ class ShippingAddressWidget extends StatelessWidget {
           SvgPicture.asset(Assets.imagesLocation),
           SizedBox(width: 8),
           Text(
-            context.read<OrderEntity>().shippingAddressEntity.toString(),
+            context
+                .read<OrderEntity>()
+                .shippingAddressEntity
+                .toString(),
             style: TextStyles.regular16.copyWith(color: Color(0xFF4E5556)),
           ),
           Spacer(),
