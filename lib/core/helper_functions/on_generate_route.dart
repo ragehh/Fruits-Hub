@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/features/auth/presentation/views/forget_password_view.dart';
 import 'package:fruits_hub/features/best_selling_fruits/presentation/views/best_selling_fruits_view.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/checkout_view.dart';
 import 'package:fruits_hub/features/home/domain/entities/cart_entity.dart';
@@ -19,6 +20,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SignInView());
     case SignupView.routeName:
       return MaterialPageRoute(builder: (context) => const SignupView());
+    case ForgetPasswordView.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const ForgetPasswordView(),
+      );
     case MainView.routeName:
       return MaterialPageRoute(builder: (context) => const MainView());
     case BestSellingFruitsView.routeName:

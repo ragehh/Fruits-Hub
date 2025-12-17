@@ -8,6 +8,7 @@ import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_hub/core/widgets/password_field.dart';
 import 'package:fruits_hub/features/auth/presentation/cubits/sign_in_cubit/sign_in_cubit.dart';
+import 'package:fruits_hub/features/auth/presentation/views/forget_password_view.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/or_divider.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/social_sign_in_button.dart';
 
@@ -56,10 +57,18 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    'نسيت كلمة المرور؟',
-                    style: TextStyles.bold13.copyWith(
-                      color: AppColors.lightPrimaryColor,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        ForgetPasswordView.routeName,
+                      );
+                    },
+                    child: Text(
+                      'نسيت كلمة المرور؟',
+                      style: TextStyles.bold13.copyWith(
+                        color: AppColors.lightPrimaryColor,
+                      ),
                     ),
                   ),
                 ],
