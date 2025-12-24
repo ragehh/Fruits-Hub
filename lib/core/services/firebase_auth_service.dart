@@ -185,6 +185,21 @@ class FirebaseAuthService {
     )).user!;
   }
 
+  Future sendPasswordResetEmail({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      log(
+        'Exception in FirebaseAuthService.sendPasswordResetEmail: ${e.toString()} and code is ${e.code}',
+      );
+      if (e.code == 'invalid-email') {
+        throw CustomException(
+          message: 'عنوان البريد الإلكتروني غير منسق بشكل صحيح.',
+        );
+      }
+    }
+  }
+
   bool isLoggedIn() {
     return FirebaseAuth.instance.currentUser != null;
   }
