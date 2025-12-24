@@ -20,6 +20,8 @@ abstract class AuthRepo {
 
   Future<Either<Failure, UserEntity>> signInWithApple();
 
+  Future<Either<Failure, void>> sendPasswordResetEmail({required String email});
+
   Future addUserData({required UserEntity user});
 
   Future saveUserData({required UserEntity user});

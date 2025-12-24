@@ -149,6 +149,20 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
+  Future<Either<Failure, void>> sendPasswordResetEmail({
+    required String email,
+  }) async {
+    try {
+      await firebaseAuthService.sendPasswordResetEmail(email: email);
+      return Right(null);
+    } on FirebaseAuthException catch (e) {
+      return Left(ServerFailure(e.message ?? 'Failed to send reset email.'));
+    } catch (e) {
+      return Left(ServerFailure('يرجى إدخال عنوان بريد إلكتروني صحيح.'));
+    }
+  }
+
+  @override
   Future addUserData({required UserEntity user}) async {
     await databaseService.addData(
       path: BackendEndpoints.addUserData,
