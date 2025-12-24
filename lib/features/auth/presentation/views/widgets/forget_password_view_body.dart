@@ -16,16 +16,16 @@ class ForgetPasswordViewBody extends StatelessWidget {
         children: [
           const SizedBox(height: 24),
           Text(
-            'لا تقلق ، ما عليك سوى كتابة رقم هاتفك وسنرسل إليك رمز التحقق.',
+            'لا تقلق ، ما عليك سوى كتابة البريد الإلكتروني الخاص بحسابك وسنرسل إليك بريد لإعادة تعيين كلمة المرور.',
             style: TextStyles.semiBold16.copyWith(color: Color(0xFF616A6B)),
           ),
           const SizedBox(height: 30),
           const CustomTextFormField(
-            hintText: 'رقم الهاتف',
+            hintText: 'البريد الإلكتروني',
             textInputType: TextInputType.phone,
           ),
           const SizedBox(height: 30),
-          CustomButton(onPressed: () {}, text: 'نسيت كلمة المرور'),
+          CustomButton(onPressed: () {}, text: 'إعادة تعيين كلمة المرور'),
         ],
       ),
     );
