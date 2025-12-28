@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/constants.dart';
-import 'package:fruits_hub/features/home/presentation/views/widgets/products_grid_view.dart';
 
+import '../../../../../core/cubits/products_cubit/products_cubit.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../home/presentation/views/widgets/products_grid_view_bloc_builder.dart';
 
-class BestSellingFruitsViewBody extends StatelessWidget {
+class BestSellingFruitsViewBody extends StatefulWidget {
   const BestSellingFruitsViewBody({super.key});
+
+  @override
+  State<BestSellingFruitsViewBody> createState() =>
+      _BestSellingFruitsViewBodyState();
+}
+
+class _BestSellingFruitsViewBodyState extends State<BestSellingFruitsViewBody> {
+  @override
+  void initState() {
+    context.read<ProductsCubit>().getBestSellingProducts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +38,7 @@ class BestSellingFruitsViewBody extends StatelessWidget {
               ],
             ),
           ),
-          ProductsGridView(products: []),
+          ProductsGridViewBlocBuilder(),
         ],
       ),
     );
